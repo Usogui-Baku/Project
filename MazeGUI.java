@@ -41,6 +41,7 @@ public class MazeGUI extends JFrame {
 					case KeyEvent.VK_RIGHT -> engine.movePlayer(0, 1);
 				}
 				infoPanel.setInfoSteps(currentBoard.stepCounter.getSteps());
+				infoPanel.setInfoCoins(engine.getCoins());
 				gamePanel.repaint();
 
 				// Check for victory
@@ -92,6 +93,7 @@ public class MazeGUI extends JFrame {
 			resetItem.setEnabled(true);
 			gamePanel.setBoard(currentBoard);
 			infoPanel.setInfoSteps(0);
+			infoPanel.setInfoCoins(0);
 			gamePanel.repaint();
 		}
 	}
@@ -102,6 +104,7 @@ public class MazeGUI extends JFrame {
 			engine = new GameEngine(currentBoard);
 			gamePanel.setBoard(currentBoard);
 			infoPanel.setInfoSteps(0);
+			infoPanel.setInfoCoins(0);
 			gamePanel.repaint();
 		}
 	}

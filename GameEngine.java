@@ -5,6 +5,7 @@ public class GameEngine {
 	private int playerCol;
 	private int exitRow;
 	private int exitCol;
+	private int coins;
 
 	// Cell Type Constants
 	private static final int FLOOR = 0;
@@ -21,6 +22,10 @@ public class GameEngine {
 
 	public boolean playerWins() {
 		return false;
+	}
+
+	public int getCoins() {
+		return coins;
 	}
 
 	private void findPlayer() {
@@ -61,6 +66,10 @@ public class GameEngine {
 		// Check for Walls or Out of Bounds
 		if (targetCell == WALL || targetCell == -1) {
 			return; // Movement blocked
+		}
+
+		if (targetCell == COIN) {
+			coins++;
 		}
 
 		// Move the Player
