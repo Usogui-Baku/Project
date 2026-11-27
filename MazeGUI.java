@@ -200,10 +200,26 @@ public class MazeGUI extends JFrame {
 			if (board == null)
 				return;
 
+			int playerRow = -1;
+			int playerCol = -1;
+			for (int r = 0; r < 6; r++) {
+				for (int c = 0; c < 10; c++) {
+					if (board.getCell(r, c) == 6) {
+						playerRow = r;
+						playerCol = c;
+						break;
+					}
+				}
+				if (playerRow != -1) {
+					break;
+				}
+			}
+
 			for (int r = 0; r < 6; r++) {
 				for (int c = 0; c < 10; c++) {
 					int cell = board.getCell(r, c);
-					drawTile(g, cell, c * TILE_SIZE, r * TILE_SIZE);
+					boolean visible = Math.abs(r - playerRow) <= 1 && Math.abs(c - playerCol) <= 1;
+					drawTile(g, visible ? cell : -1, c * TILE_SIZE, r * TILE_SIZE);
 				}
 			}
 		}
@@ -219,8 +235,10 @@ public class MazeGUI extends JFrame {
 				default -> g.setColor(Color.BLACK);
 			}
 			g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
-			g.setColor(Color.WHITE);
-			g.drawRect(x, y, TILE_SIZE, TILE_SIZE); // Grid lines
+			if (type != -1) {
+				g.setColor(Color.WHITE);
+				g.drawRect(x, y, TILE_SIZE, TILE_SIZE); // Grid lines
+			}
 		}
 	}
 
