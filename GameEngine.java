@@ -5,6 +5,7 @@ public class GameEngine {
 	private int playerCol;
 	private int exitRow;
 	private int exitCol;
+	private boolean exitFound;
 	private int coins;
 
 	// Cell Type Constants
@@ -21,7 +22,7 @@ public class GameEngine {
 	}
 
 	public boolean playerWins() {
-		return false;
+		return exitFound && playerRow == exitRow && playerCol == exitCol;
 	}
 
 	public int getCoins() {
@@ -29,7 +30,7 @@ public class GameEngine {
 	}
 
 	private void findPlayer() {
-		for (int r = 0; r < 5; r++) {
+		for (int r = 0; r < 6; r++) {
 			for (int c = 0; c < 10; c++) {
 				if (board.getCell(r, c) == PLAYER) {
 					playerRow = r;
@@ -41,11 +42,13 @@ public class GameEngine {
 	}
 
 	private void findExit() {
-		for (int r = 0; r < 5; r++) {
+		exitFound = false;
+		for (int r = 0; r < 6; r++) {
 			for (int c = 0; c < 10; c++) {
 				if (board.getCell(r, c) == EXIT) {
 					exitRow = r;
 					exitCol = c;
+					exitFound = true;
 					return;
 				}
 			}
