@@ -1,4 +1,3 @@
-package edu.txst.project;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +40,7 @@ public class MazeGUI extends JFrame {
 					case KeyEvent.VK_LEFT -> engine.movePlayer(0, -1);
 					case KeyEvent.VK_RIGHT -> engine.movePlayer(0, 1);
 				}
+				infoPanel.setInfoSteps(currentBoard.stepCounter.getSteps());
 				gamePanel.repaint();
 
 				// Check for victory
@@ -91,6 +91,7 @@ public class MazeGUI extends JFrame {
 
 			resetItem.setEnabled(true);
 			gamePanel.setBoard(currentBoard);
+			infoPanel.setInfoSteps(0);
 			gamePanel.repaint();
 		}
 	}
@@ -100,6 +101,7 @@ public class MazeGUI extends JFrame {
 			currentBoard = originalBoard.clone();
 			engine = new GameEngine(currentBoard);
 			gamePanel.setBoard(currentBoard);
+			infoPanel.setInfoSteps(0);
 			gamePanel.repaint();
 		}
 	}

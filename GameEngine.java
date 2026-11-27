@@ -1,4 +1,3 @@
-package edu.txst.project;
 
 public class GameEngine {
 	private Board board;
@@ -73,6 +72,7 @@ public class GameEngine {
 		playerRow = targetRow;
 		playerCol = targetCol;
 		board.setCell(playerRow, playerCol, PLAYER);
+		board.stepCounter.increaseSteps();
 
 	}
 }
