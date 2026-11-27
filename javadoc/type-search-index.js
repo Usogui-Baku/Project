@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Board"},{"p":"<Unnamed>","l":"BoardLoader"},{"p":"<Unnamed>","l":"CSVBoardLoader"},{"p":"<Unnamed>","l":"GameEngine"},{"p":"<Unnamed>","l":"MazeGUI"},{"p":"<Unnamed>","l":"StepCounter"}];updateSearchResults();

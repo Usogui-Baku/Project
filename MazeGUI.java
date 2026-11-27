@@ -1,10 +1,13 @@
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import javax.swing.*;
 
+/**
+ * Displays the maze and handles player input.
+ */
 public class MazeGUI extends JFrame {
 	private Board originalBoard;
 	private Board currentBoard;
@@ -12,8 +15,10 @@ public class MazeGUI extends JFrame {
 	private GamePanel gamePanel;
 	private InfoPanel infoPanel;
 	private JMenuItem resetItem;
-	private int stepCounter;
 
+	/**
+	 * Creates the game window and initializes its controls.
+	 */
 	public MazeGUI() {
 		setTitle("16-Bit Maze");
 		setSize(640, 480); // Adjusted for 10x5 grid with scaling
@@ -48,7 +53,7 @@ public class MazeGUI extends JFrame {
 				if (engine.playerWins()) {
 					JOptionPane.showMessageDialog(MazeGUI.this,
 							"Congratulations! You found the exit.\nYour got "
-									+ infoPanel.getInfoSteps() * 1 + infoPanel.getInfoCoins()
+									+ infoPanel.getInfoSteps() * -1 + infoPanel.getInfoCoins() * 5
 									+ "points",
 							"Level Complete", JOptionPane.INFORMATION_MESSAGE);
 
@@ -110,10 +115,16 @@ public class MazeGUI extends JFrame {
 	}
 
 	// Inner class for information panel
+	/**
+	 * Displays the current step and coin counts.
+	 */
 	private class InfoPanel extends JPanel {
 		private JLabel infoSteps;
 		private JLabel infoCoins;
 
+		/**
+		 * Creates the information panel with initial counter values.
+		 */
 		public InfoPanel() {
 			this.setLayout(new FlowLayout());
 			this.add(new JLabel("Steps: "));
@@ -129,28 +140,56 @@ public class MazeGUI extends JFrame {
 			this.add(infoCoins);
 		}
 
+		/**
+		 * Updates the displayed step count.
+		 *
+		 * @param remainingSteps the current number of steps
+		 */
 		public void setInfoSteps(int remainingSteps) {
 			this.infoSteps.setText(Integer.toString(remainingSteps));
 		}
 
+		/**
+		 * Returns the displayed step count.
+		 *
+		 * @return current step count
+		 */
 		public int getInfoSteps() {
 			return Integer.parseInt(this.infoSteps.getText());
 		}
 
+		/**
+		 * Updates the displayed coin count.
+		 *
+		 * @param infoCoins the current number of collected coins
+		 */
 		public void setInfoCoins(int infoCoins) {
 			this.infoCoins.setText(Integer.toString(infoCoins));
 		}
 
+		/**
+		 * Returns the displayed coin count.
+		 *
+		 * @return current coin count
+		 */
 		public int getInfoCoins() {
 			return Integer.parseInt(this.infoCoins.getText());
 		}
 	}
 
 	// Inner class for custom rendering
+	/**
+	 * Renders the maze board.
+	 */
 	private class GamePanel extends JPanel {
 		private Board board;
 		private final int TILE_SIZE = 64; // Scale up for visibility
 
+		/**
+		 * Sets the board rendered by this panel.
+		 *
+		 * @param board the board to display
+		 */
 		public void setBoard(Board board) {
 			this.board = board;
 		}
@@ -185,6 +224,11 @@ public class MazeGUI extends JFrame {
 		}
 	}
 
+	/**
+	 * Starts the maze game.
+	 *
+	 * @param args command-line arguments
+	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> new MazeGUI().setVisible(true));
 	}

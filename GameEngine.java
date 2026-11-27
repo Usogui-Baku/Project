@@ -1,4 +1,7 @@
 
+/**
+ * Manages player movement and game state for a maze board.
+ */
 public class GameEngine {
 	private Board board;
 	private int playerRow;
@@ -15,16 +18,31 @@ public class GameEngine {
 	private static final int EXIT = 5;
 	private static final int PLAYER = 6;
 
+	/**
+	 * Creates an engine for the given board.
+	 *
+	 * @param board the board containing the maze
+	 */
 	public GameEngine(Board board) {
 		this.board = board;
 		findPlayer();
 		findExit();
 	}
 
+	/**
+	 * Checks whether the player has reached the exit.
+	 *
+	 * @return true if the player is at the exit
+	 */
 	public boolean playerWins() {
 		return exitFound && playerRow == exitRow && playerCol == exitCol;
 	}
 
+	/**
+	 * Returns the number of coins collected.
+	 *
+	 * @return collected coin count
+	 */
 	public int getCoins() {
 		return coins;
 	}
